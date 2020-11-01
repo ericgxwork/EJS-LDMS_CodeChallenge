@@ -1,0 +1,35 @@
+REM
+REM Release steps
+REM
+REM Step 1
+REM
+REM Grant access to Oracle packages from priviledge account
+REM
+CONNECT AS SYSDBA
+CREATE OR REPLACE DIRECTORY EXTRACT_DIR AS '<EXTRACTION_FOLDER_ON_SERVER>';
+GRANT READ, WRITE ON DIRECTORY EXTRACT_DIR TO <ORACLEUSER>;
+GRANT EXECUTE ON UTL_FILE TO <ORACLEUSER>;
+GRANT EXECUTE ON DBMS_LOCK TO <ORACLEUSER>;
+REM
+REM Step 2
+REM
+REM REM Review release scripts to add storage clauses where necessary
+REM
+REM Step 3
+REM 
+REM Put all files into release folder 
+REM
+REM Step 4
+REM
+REM Login to <ORACLEUSER> as Normal 
+REM Start release script LDMS_CodingTest_EricSalles_V2.sq
+REM Note the script will attempt to compile all invalid objects using provided COMPILE.SQL utility script
+REM The script is not part of the formal release
+REM
+REM
+REM Objects created are:
+REM tables: EMPLOYEES and DEPARTMENTS with constraints
+REM Sequence: SEQ_EMPLOYEE_ID
+REM Package: PKG_EMPLOYEE_MAINTENANCE
+REM
+REM
